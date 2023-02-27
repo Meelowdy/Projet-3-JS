@@ -52,6 +52,7 @@ body {
 	margin:auto;
 	font-family: 'Work Sans' ;
 	font-size: 14px;
+	background-color: #FFFEF8;
 }
 header {
 	display: flex;
@@ -125,6 +126,25 @@ li:hover {
 	text-align: center;
 	margin-bottom: 1em;
 }
+
+.filterGroup {
+	display: flex;
+	justify-content: center;
+}
+.filterElement {
+	margin-right: 10px;
+
+}
+.filterElemennt:last-child {
+	margin-right: 0;
+}
+.filterButton {
+	border: 1px solid #1D6154;
+	border-radius: 60px;
+	background-color: #FFFEF8;
+	color:#1D6154;
+}
+
 .gallery {
 	width: 100%;
 	display: grid;

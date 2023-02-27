@@ -20,4 +20,5 @@ function getElementAPI (event) {
             }
         })
 };
+getElementAPI()
 
