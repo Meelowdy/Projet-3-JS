@@ -143,6 +143,18 @@ li:hover {
 	border-radius: 60px;
 	background-color: #FFFEF8;
 	color:#1D6154;
+	font-size: 16px;
+	padding: 9px 15px;
+	margin-bottom: 51px;
+}
+
+.filterButton:hover {
+	color: #FFF;
+	background-color: #1D6154;
+}
+.filterButton:active {
+	color: #FFF;
+	background-color: #1D6154;
 }
 
 .gallery {
