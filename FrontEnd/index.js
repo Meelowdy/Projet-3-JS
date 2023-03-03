@@ -6,35 +6,33 @@ async function getElementAPI() {
             let imgUrl = element.imageUrl;
             let titleimg = element.title;
             document.getElementById("imgProjet").innerHTML +=
-            `<figure class="projectItem">
+            `<figure class="projectItem" data-figure=${element.categoryId}>
                 <img src=${imgUrl} alt=${titleimg}>
                 <figcaption>${titleimg}</figcaption>
             </figure>` 
-           
+        });           
             const buttonFilter = document.querySelectorAll('button');
-          
+            const projectItem = document.getElementsByClassName("projectItem");
+         
             for (let a = 0; a < buttonFilter.length; a++) {
-                // boucle de 0 à 3 les tableaux du buttonFilter. Ajout d'un évènemement d'écoute click qui a pour argument "event"  
+     
                 buttonFilter[a].addEventListener('click', event => {
-                    // event = intérieur du buttonFilter[a], avec event (variable) on récupère le dataset qui se trouve dans le target/dataset/id
-                    // console.log(document.getElementsByClassName("projectItem"));
-                    const projectItem = document.getElementsByClassName("projectItem");
-                    // for (let b = 0; b < projectItem.length; b++) {
-                    // }         
-                    // console.log("api category id = " + element.categoryId);
-                    // console.log("id dataset du bouton" + buttonFilter[a].dataset.id);
-                    if (buttonFilter[a].dataset.id != element.categoryId) {
-                        // projectItem[a].style.display = "none";
-                        console.log("IF = " + projectItem[a])
-                    }
-                    else {
-                        console.log("ELSE = " + projectItem[a])
-                        // console.log(projectItem[5].style.backgroundColor = "red")
-                        // console.log(projectItem[0].classList)
-                    }
+            
+                    const buttonfilterdatasetId = event.target.dataset.id;
+                   
+                    [...projectItem].forEach(item =>{    
+                    const dataCategory = item.dataset.figure;
+                       
+                        if (buttonfilterdatasetId === dataCategory || buttonfilterdatasetId==0) {
+                            item.style.display = "initial";
+                        }
+                        else {
+                            item.style.display = "none";
+                        }
+                    })
+                 
                 })
             }
-        });
     
     } catch (err) {
         console.error(err);        
