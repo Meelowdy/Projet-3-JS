@@ -218,3 +218,44 @@ footer nav ul {
 	margin: 2em
 }
 
+/* CSS for connexion.html */
+
+#log {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 37px;
+}
+#log_connexion {
+	display: flex;
+	flex-direction: column;
+	width: 379px;
+	margin-inline: auto;
+}
+main input {
+	height: 51px;
+	margin-top: 7px;
+	margin-bottom: 30px;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0,0,0,0.09);
+}
+
+main button {
+	margin-top: 7px;
+	margin-bottom: 28px;
+	width: 179px;
+	height: 37px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-inline: auto;
+	color: #FFF;
+	font-weight: bold;
+	border-radius: 60px;
+	border: none;
+	background-color: #1D6154;
+}
+#forget_password { 
+	display: flex;
+	justify-content: center;
+	color: black;
+}

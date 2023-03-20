@@ -24,15 +24,15 @@
         </nav>
     </header>
 <main>
-    <h2>Log in</h2>
-    <form action="http://127.0.0.1:5501/FrontEnd/" method="post">
+    <h2 id="log">Log in</h2>
+    <form id="log_connexion" name="formLogin" action="http://127.0.0.1:5501/FrontEnd/" method="post">
         <label for="mail">E-mail</label>
         <input type="email" name="email" required> 
         <label for="password">Mot de passe</label>
         <input type="password" name="password" required>
-        <button type="submit">Se connecter</button>
+        <button class="connexionButton" type="submit">Se connecter</button>
         <div>
-            <a href="#">Mot de passe oublié</a>
+            <a id="forget_password" href="#">Mot de passe oublié</a>
         </div>
     </form>
 </main>
