@@ -15,9 +15,24 @@ connexionButton.addEventListener("click", async (event) => {
     body: JSON.stringify(formData)
   })
 let result = await response.json();
-console.log(result.token);
+
+const emailError = document.getElementById("email_error");
+const passwordError = document.getElementById("password_error");
+switch (response.status) {
+  case 200:
+    window.location.href='http://127.0.0.1:5501/FrontEnd/'
+    break;
+    case 404:
+    emailError.style.display = "initial";
+    console.log(result)
+  case 401:
+    passwordError.style.display = "initial"
+    console.log(result)
+    break;  
+  default:
+    console.log("Contactez la personne");
+    break;
+}
 
 document.cookie=`Login=${access_token=result.token}`
-
-window.location.href='http://127.0.0.1:5501/FrontEnd/'
 });

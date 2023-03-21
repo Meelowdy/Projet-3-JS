@@ -265,3 +265,6 @@ main button {
 	justify-content: center;
 	color: black;
 }
+#email_error, #password_error {
+	display: none;
+}
