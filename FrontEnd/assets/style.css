@@ -246,7 +246,6 @@ main input {
 }
 
 main button {
-	margin-top: 7px;
 	margin-bottom: 28px;
 	width: 179px;
 	height: 37px;
@@ -267,4 +266,8 @@ main button {
 }
 #email_error, #password_error {
 	display: none;
+	color: #D65353;
+	font-weight: bold;
+	justify-content: center;
+	padding-bottom: 15px;
 }

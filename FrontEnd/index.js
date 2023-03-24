@@ -5,7 +5,9 @@ async function getElementAPI() {
     data.forEach((element) => {
       let imgUrl = element.imageUrl;
       let titleimg = element.title;
-      document.getElementById("imgProjet").innerHTML += `<figure class="projectItem" data-figure=${element.categoryId}>
+      document.getElementById(
+        "imgProjet"
+      ).innerHTML += `<figure class="projectItem" data-figure=${element.categoryId}>
                 <img src=${imgUrl} alt=${titleimg}>
                 <figcaption>${titleimg}</figcaption>
             </figure>`;
@@ -27,7 +29,10 @@ async function getElementAPI() {
           // création de la variable dataCategory qui mène au chemin pour récupérer le dataset des images = data-figure
           const dataCategory = item.dataset.figure;
           // si buttonfilterdatasetId (les boutons filtres) correspond à datacategory (numéro de la catégorie de l'image) OU si buttonfilter (les boutons filtres) vaut 0
-          if (buttonfilterdatasetId === dataCategory || buttonfilterdatasetId == 0) {
+          if (
+            buttonfilterdatasetId === dataCategory ||
+            buttonfilterdatasetId == 0
+          ) {
             // alors il affiche les images car il donne un affichage initial
             item.style.display = "initial";
           } else {
@@ -52,6 +57,21 @@ async function getElementAPI() {
     // condition try et catch, try permet d'essayer le code appliqué et s'il n'y arrive pas, il affiche l'erreur dans un console log
   } catch (err) {
     console.error(err);
+  }
+  const cookies = document.cookie.split("; ");
+  let loginCookie = "";
+
+  for (const cookie of cookies) {
+    let result = cookie.toLowerCase().includes("login");
+    if (result === true) {
+      loginCookie = cookie.split("=")[1];
+    }
+  }
+
+  if (loginCookie) {
+    document.getElementById("login").innerText = "logout";
+  } else {
+    document.getElementById("login").innerText = "login";
   }
 }
 getElementAPI();
