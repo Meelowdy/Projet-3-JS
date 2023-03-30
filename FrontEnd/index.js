@@ -20,7 +20,6 @@ async function getElementAPI() {
       // Buttonfilter[a]= tableau qui contient les filtres de 0 à 3. Puis ajoute un évènemement d'écoute sur chaque click du filtre qui a pour argument "event"
       buttonFilter[a].addEventListener("click", (event) => {
         // event = intérieur du buttonFilter[a], avec event (variable) on récupère le dataset qui se trouve sur le bouton avec la route: target/dataset/id
-
         // création de la variable buttonfilterdatasetId qui contient le chemin pour récupérer l'ID du bouton filter
         const buttonfilterdatasetId = event.target.dataset.id;
 
@@ -58,20 +57,26 @@ async function getElementAPI() {
   } catch (err) {
     console.error(err);
   }
-  const cookies = document.cookie.split("; ");
-  let loginCookie = "";
+  // création d'une variable "cookies" afin qu'il sépare les cookies dans un tableau avec split (";")
+  const cookies = document.cookie.split("=");
+  const login = document.getElementById("login");
+  const changeBar = document.getElementById("change_bar");
+  const filterGroup = document.getElementById('filterGroup')
 
-  for (const cookie of cookies) {
-    let result = cookie.toLowerCase().includes("login");
-    if (result === true) {
-      loginCookie = cookie.split("=")[1];
-    }
-  }
-
-  if (loginCookie) {
-    document.getElementById("login").innerText = "logout";
-  } else {
-    document.getElementById("login").innerText = "login";
+  if (cookies[0] === "Login") {
+    // alors change login en logout
+    changeBar.style.display = "flex";
+    login.innerText = "logout";
+    filterGroup.style.display = "none";
+    login.href = "#";
+    login.addEventListener("click", (event) => {
+      document.cookie =
+        "Login=value; path=/FrontEnd; domain=127.0.0.1; Max-age=0";
+      changeBar.style.display = "none";
+      login.innerText = "login";
+      location.reload();
+      console.log(cookies);
+    });
   }
 }
 getElementAPI();

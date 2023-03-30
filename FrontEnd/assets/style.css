@@ -30,6 +30,9 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+	font-family: 'Work Sans' ;
+	font-size: 14px;
+	background-color: #FFFEF8;
 }
 ol, ul {
 	list-style: none;
@@ -47,12 +50,9 @@ table {
 	border-spacing: 0;
 }
 /** end reset css**/
-body {
+.body {
 	max-width: 1140px;
 	margin:auto;
-	font-family: 'Work Sans' ;
-	font-size: 14px;
-	background-color: #FFFEF8;
 }
 header {
 	display: flex;
@@ -129,10 +129,10 @@ li:hover {
 }
 #portfolio h2 {
 	text-align: center;
-	margin-bottom: 1em;
+	margin-right: 31px;
 }
 
-.filterGroup {
+#filterGroup {
 	display: flex;
 	justify-content: center;
 }
@@ -270,4 +270,43 @@ main button {
 	font-weight: bold;
 	justify-content: center;
 	padding-bottom: 15px;
+}
+
+#change_bar {
+	display: none;
+	justify-content: center;
+	align-items: center;
+	background-color: #000;
+	color: #FFF;
+	height: 59px;
+}
+
+body div button {
+	border-radius: 30px;
+	height: 38px;
+	width: 216px;
+	font-size: 14px;
+	font-weight: 500;
+	margin-left: 21px;
+}
+
+body div p {
+	font-size: 16px;
+}
+
+.fa-pen-to-square {
+	font-size: 16px;
+	margin-right: 15px;
+}
+
+#lien_no_color {
+	color : #000;
+	text-decoration: none;
+}
+
+#project_icon {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 1em;
 }

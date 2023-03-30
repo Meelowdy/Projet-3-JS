@@ -7,11 +7,18 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/0c49e15767.js" crossorigin="anonymous"></script>
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
 	<script defer type="text/javascript" src="index.js"></script>
 </head>
 <body>
+	<div id="change_bar">
+		<i class="fa-regular fa-pen-to-square"></i>
+		<p id="">Mode édition</p>
+		<button id="publish_change">publier les changements</button>
+	</div> 
+	<div class="body">
 <header>
 	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 	<nav>
@@ -38,9 +45,13 @@
 		</article>
 	</section>
 	<section id="portfolio">
+		<div id="project_icon">
 		<h2>Mes Projets</h2>
+		<a id="lien_no_color" href="#">
+		<i class="fa-regular fa-pen-to-square"></i>modifier</a>
+	</div>
 		<div>
-		<ul class="filterGroup">
+		<ul id="filterGroup">
 			<li class="filterElement">
 				<button data-id="0" type="button" class="filterButton active">Tous</button>
 			</li>
@@ -79,5 +90,6 @@
 		</ul>
 	</nav>
 </footer>
+</div>
 </body>
 </html>
