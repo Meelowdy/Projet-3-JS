@@ -67,7 +67,7 @@ async function getElementAPI() {
     // alors change login en logout
     changeBar.style.display = "flex";
     login.innerText = "logout";
-    filterGroup.style.display = "none";
+    filterGroup.style.visibility = "hidden";
     login.href = "#";
     login.addEventListener("click", (event) => {
       document.cookie =
