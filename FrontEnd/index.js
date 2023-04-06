@@ -50,7 +50,6 @@ async function getElementAPI() {
             buttonFilter[b].classList.remove("active");
           }
         }
-        // console.log(event.target.classList[1])
       });
     }
     // condition try et catch, try permet d'essayer le code appliqué et s'il n'y arrive pas, il affiche l'erreur dans un console log
@@ -61,7 +60,7 @@ async function getElementAPI() {
   const cookies = document.cookie.split("=");
   const login = document.getElementById("login");
   const changeBar = document.getElementById("change_bar");
-  const filterGroup = document.getElementById('filterGroup')
+  const filterGroup = document.getElementById("filterGroup");
 
   if (cookies[0] === "Login") {
     // alors change login en logout
@@ -78,5 +77,48 @@ async function getElementAPI() {
       console.log(cookies);
     });
   }
+  const editGallery = document.getElementById("editGallery");
+  const modal = document.getElementById("modal");
+
+  // Permet d'ouvrir la fênetre modale
+  editGallery.addEventListener("click", (event) => {
+    event.preventDefault();
+
+    previousPage.style.display = 'none';
+    modal.style.display = "flex";
+    galleryPicture.style.display = "flex";
+  });
+
+  const closeModal = document.getElementById("closeModal");
+
+  // Permet de fermer la fenêtre modale => "x"
+  closeModal.addEventListener("click", (event) => {
+    event.preventDefault();
+
+    newPicture.style.display = "none";
+    modal.style.display = "none";
+  });
+
+  const addPicture = document.getElementById("addPicture");
+  const newPicture = document.getElementById("newPicture");
+  const galleryPicture = document.getElementById("galleryPicture");
+  const previousPage = document.getElementById("previousPage");
+
+  // Permet d'afficher la deuxième fênetre de la modale quand on clique sur "Ajouter une photo"
+  addPicture.addEventListener("click", (event) => {
+    event.preventDefault();
+
+    previousPage.style.display = "flex";
+    newPicture.style.display = "flex";
+    galleryPicture.style.display = "none";
+  });
+
+  previousPage.addEventListener("click", (event) => {
+    event.preventDefault();
+
+    previousPage.style.display = 'none';
+    galleryPicture.style.display = "flex";
+    newPicture.style.display = "none";
+  });
 }
 getElementAPI();

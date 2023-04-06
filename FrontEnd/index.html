@@ -67,9 +67,10 @@
         <section id="portfolio">
           <div id="project_icon">
             <h2>Mes Projets</h2>
-            <a id="lien_no_color" href="modal">
-              <i class="fa-regular fa-pen-to-square"></i>modifier</a
-            >
+            <a class="lien_no_color" id="editGallery" href="#modal">
+              <i class="fa-regular fa-pen-to-square"></i>
+              <p>modifier</p>
+            </a>
           </div>
           <div>
             <ul id="filterGroup">
@@ -124,37 +125,38 @@
         </nav>
       </footer>
     </div>
-    <aside>
-      <a href="modal"></a>
-      <i class="fa-solid fa-arrow-left"></i>
-      <i class="fa-solid fa-xmark"></i>
-      <div id="galleryPicture">
-        <h2>Galerie photo</h2>
-        <hr />
-        <button>Ajouter une photo</button>
-        <a href="#"><p>Supprimer la galerie</p></a>
-      </div>
-      <div id="addPicture">
-        <h2>Ajout photo</h2>
-        <form>
-          <div>
-            <i class="fa-regular fa-image"></i>
-            <label for="file-upload">+ Ajouter une photo</label>
-            <input type="file" id="file-upload" />
-            <p>jpg,png : 4mo max</p>
-          </div>
-          <label for="title">Titre</label>
-          <input type="text" name="text" />
-          <label for="scrollingMenu">Catégorie</label>
-		  <select name="menu">
-			<option value=""></option>
-			<option value="1">Objets</option>
-			<option value="2">Appartements</option>
-			<option value="3">Hôtels & restaurants</option>
-		  </select>
-		  <hr>
-		  <button type="submit">Valider</button>
-        </form>
+    <aside id="modal" class="modal">
+      <div id="modal_wrapper">
+        <i id="previousPage" class="fa-solid fa-arrow-left"></i>
+        <i id="closeModal" class="fa-solid fa-xmark"></i>
+        <div id="galleryPicture">
+          <h2>Galerie photo</h2>
+          <hr>
+          <button id="addPicture">Ajouter une photo</button>
+          <a href="#"><p>Supprimer la galerie</p></a>
+        </div>
+        <div id="newPicture">
+          <h2>Ajout photo</h2>
+          <form>
+            <div>
+              <i class="fa-regular fa-image"></i>
+              <label for="file-upload">+ Ajouter une photo</label>
+              <input type="file" id="file-upload" />
+              <p>jpg,png : 4mo max</p>
+            </div>
+            <label for="title">Titre</label>
+            <input type="text" name="text" />
+            <label for="scrollingMenu">Catégorie</label>
+            <select name="menu">
+              <option value=""></option>
+              <option value="1">Objets</option>
+              <option value="2">Appartements</option>
+              <option value="3">Hôtels & restaurants</option>
+            </select>
+            <hr />
+            <button type="submit">Valider</button>
+          </form>
+        </div>
       </div>
     </aside>
   </body>
