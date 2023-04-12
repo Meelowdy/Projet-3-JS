@@ -127,10 +127,13 @@
     </div>
     <aside id="modal" class="modal">
       <div id="modal_wrapper">
+        <div id="groupIcons">
         <i id="previousPage" class="fa-solid fa-arrow-left"></i>
         <i id="closeModal" class="fa-solid fa-xmark"></i>
+        </div>
         <div id="galleryPicture">
           <h2>Galerie photo</h2>
+          <div id="pictureModal"></div>
           <hr>
           <button id="addPicture">Ajouter une photo</button>
           <a href="#"><p>Supprimer la galerie</p></a>
@@ -138,23 +141,20 @@
         <div id="newPicture">
           <h2>Ajout photo</h2>
           <form>
-            <div>
+            <div id="addNewPic">
               <i class="fa-regular fa-image"></i>
               <label for="file-upload">+ Ajouter une photo</label>
-              <input type="file" id="file-upload" />
+              <input type="file" id="file-upload"/>
               <p>jpg,png : 4mo max</p>
             </div>
             <label for="title">Titre</label>
-            <input type="text" name="text" />
+            <input class="textCategory" type="text" name="text"/>
             <label for="scrollingMenu">Catégorie</label>
-            <select name="menu">
-              <option value=""></option>
-              <option value="1">Objets</option>
-              <option value="2">Appartements</option>
-              <option value="3">Hôtels & restaurants</option>
-            </select>
-            <hr />
+            <select id="optionCategory" class="textCategory" name="menu"></select>
+            <hr/>
+            <div class="submitButtonAddPicture">
             <button type="submit">Valider</button>
+            </div>
           </form>
         </div>
       </div>

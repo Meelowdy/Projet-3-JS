@@ -11,8 +11,16 @@ async function getElementAPI() {
                 <img src=${imgUrl} alt=${titleimg}>
                 <figcaption>${titleimg}</figcaption>
             </figure>`;
+
+      const pictureModal = document.getElementById("pictureModal");
+      pictureModal.innerHTML += 
+        `<div class="pictureModal">
+            <img src=${imgUrl} alt=${titleimg}>
+            <p>éditer</p>
+        </div>`;
+
     });
-    const buttonFilter = document.querySelectorAll("button");
+    const buttonFilter = document.querySelectorAll(".filterButton");
     const projectItem = document.getElementsByClassName("projectItem");
 
     // boucle de 0 à 3 le tableau buttonFilter.
@@ -38,20 +46,28 @@ async function getElementAPI() {
             // sinon il les cache
             item.style.display = "none";
           }
-        });
 
-        for (let b = 0; b < buttonFilter.length; b++) {
-          // si parmi toutes les dataset id(0 1 2 3) y en a une qui correspond au bouton cliqué
-          if (buttonFilter[b].dataset.id === event.target.dataset.id) {
-            // alors tu ajoutes la classe active
-            buttonFilter[b].classList.add("active");
-          } else {
-            // sinon tu enlèves la classe active si elle existe
-            buttonFilter[b].classList.remove("active");
+          for (let b = 0; b < buttonFilter.length; b++) {
+            // si parmi toutes les dataset id(0 1 2 3) y en a une qui correspond au bouton cliqué
+            if (buttonFilter[b].dataset.id === event.target.dataset.id) {
+              // alors tu ajoutes la classe active
+              buttonFilter[b].classList.add("active");
+            } else {
+              // sinon tu enlèves la classe active si elle existe
+              buttonFilter[b].classList.remove("active");
+            }
           }
-        }
+        });
       });
     }
+    // Créer les options de catégories du menu déroulant de la modale
+    const optionCategory = document.getElementById("optionCategory");
+
+    optionCategory.innerHTML = `<option value=""></option>
+    <option value="1">Objets</option>
+    <option value="2">Appartements</option>
+    <option value="3">Hôtels & restaurants</option>`;
+
     // condition try et catch, try permet d'essayer le code appliqué et s'il n'y arrive pas, il affiche l'erreur dans un console log
   } catch (err) {
     console.error(err);
@@ -74,9 +90,9 @@ async function getElementAPI() {
       changeBar.style.display = "none";
       login.innerText = "login";
       location.reload();
-      console.log(cookies);
     });
   }
+  
   const editGallery = document.getElementById("editGallery");
   const modal = document.getElementById("modal");
 
@@ -84,9 +100,17 @@ async function getElementAPI() {
   editGallery.addEventListener("click", (event) => {
     event.preventDefault();
 
-    previousPage.style.display = 'none';
+    previousPage.style.visibility = "hidden";
     modal.style.display = "flex";
     galleryPicture.style.display = "flex";
+    newPicture.style.display = "none";
+
+    modal.addEventListener("mousedown", (event) => {
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+      event.stopPropagation();
+    });
   });
 
   const closeModal = document.getElementById("closeModal");
@@ -95,7 +119,6 @@ async function getElementAPI() {
   closeModal.addEventListener("click", (event) => {
     event.preventDefault();
 
-    newPicture.style.display = "none";
     modal.style.display = "none";
   });
 
@@ -108,7 +131,7 @@ async function getElementAPI() {
   addPicture.addEventListener("click", (event) => {
     event.preventDefault();
 
-    previousPage.style.display = "flex";
+    previousPage.style.visibility = "visible";
     newPicture.style.display = "flex";
     galleryPicture.style.display = "none";
   });
@@ -116,7 +139,7 @@ async function getElementAPI() {
   previousPage.addEventListener("click", (event) => {
     event.preventDefault();
 
-    previousPage.style.display = 'none';
+    previousPage.style.visibility = "hidden";
     galleryPicture.style.display = "flex";
     newPicture.style.display = "none";
   });
