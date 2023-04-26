@@ -185,11 +185,15 @@ li:hover {
 }
 #introduction {
   display: flex;
-  align-items: center;
 }
 #introduction figure {
   flex: 1;
 }
+
+#introduction a {
+  margin-top: 10px;
+}
+
 #introduction img {
   display: block;
   margin: auto;
@@ -198,14 +202,25 @@ li:hover {
 
 #introduction article {
   flex: 1;
+  margin-top: 20px;
 }
 #introduction h2 {
   margin-bottom: 1em;
+  margin-top: 17px;
 }
 
 #introduction p {
   margin-bottom: 0.5em;
 }
+
+#modify_text {
+  margin-bottom: 0px;
+}
+
+#editPictureProfile {
+  margin-left: 58px;
+}
+
 #portfolio h2 {
   text-align: center;
   margin-right: 31px;
@@ -371,14 +386,16 @@ body div p {
   font-size: 16px;
 }
 
-.fa-pen-to-square {
-  font-size: 16px;
-  margin-right: 15px;
-}
-
-.lien_no_color {
+.editButton {
+  visibility: hidden;
+  display: flex;
   color: #000;
   text-decoration: none;
+}
+
+.fa-pen-to-square {
+  font-size: 16px;
+  margin-right: 11px;
 }
 
 #project_icon {
@@ -439,15 +456,63 @@ body div p {
   color: #000;
 }
 #pictureModal {
+  position: relative;
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
+  margin-inline: 100px;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top: 46px;
+}
+#pictureModal p {
+  margin-top: 1px;
+  margin-bottom: 10px;
 }
 .pictureModal img {
-  width : 76px;
-  height : 103px;
+  position: absolute;
+  width: 76px;
+  height: 103px;
+  margin-right: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-#addPicture, .submitButtonAddPicture button {
+
+.pictureModal:nth-child(5n) img {
+  margin-right: 0;
+}
+
+.imgModal {
+  display: flex;
+}
+.imgModal:hover .arrowDirectionnel {
+  display: flex;
+}
+.imgModal img {
+  width: 80px;
+  position: relative;
+}
+
+.iconModal {
+  position: fixed;
+  width: 80px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.iconModal svg {
+  height: 10px;
+  background-color: #000;
+  padding: 2px;
+  margin: 6px 3px 6px 0px;
+  border-radius: 2px;
+  fill: #fff;
+}
+.arrowDirectionnel {
+  display: none;
+}
+#addPicture,
+.submitButtonAddPicture button {
   border-radius: 60px;
   background-color: #1d6154;
   font-size: Syne;
@@ -491,10 +556,6 @@ body div p {
   font-size: 58px;
   color: #b9c5cc;
 }
-#newPicture p {
-  font-family: Work Sans;
-  font-size: 10px;
-}
 #addNewPic {
   margin-bottom: 30px;
   display: flex;
@@ -523,7 +584,21 @@ body div p {
 #addNewPic input {
   visibility: hidden;
 }
+#basicAppareance {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
+#basicAppareance p {
+  font-family: Work Sans;
+  font-size: 10px;
+}
+
+#pictureDisplayed img {
+  max-height: 169px;
+}
 .textCategory {
   border: #fff 0px solid;
   background-color: #fff;
@@ -535,14 +610,23 @@ body div p {
 }
 
 .textCategory:last-child {
-	margin-bottom: 0;
-} 
+  margin-bottom: 0;
+}
 
 .submitButtonAddPicture {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin-left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 0;
+}
+
+#errorMessageModal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  margin-top: 20px;
+  color: #d65353;
 }
 #newPicture #previousPage {
   display: none;

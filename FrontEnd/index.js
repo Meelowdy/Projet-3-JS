@@ -12,13 +12,45 @@ async function getElementAPI() {
                 <figcaption>${titleimg}</figcaption>
             </figure>`;
 
+      // Boucle les images de l'API dans la modale
       const pictureModal = document.getElementById("pictureModal");
-      pictureModal.innerHTML += 
-        `<div class="pictureModal">
-            <img src=${imgUrl} alt=${titleimg}>
+      pictureModal.innerHTML += `<div class="pictureModal">
+            <div class="imgModal">
+              <img src=${imgUrl} alt=${titleimg}> 
+              <div class="iconModal">
+              <svg class="arrowDirectionnel" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M278.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-64 64c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l9.4-9.4V224H109.3l9.4-9.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-64 64c-12.5 12.5-12.5 32.8 0 45.3l64 64c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-9.4-9.4H224V402.7l-9.4-9.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l64 64c12.5 12.5 32.8 12.5 45.3 0l64-64c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-9.4 9.4V288H402.7l-9.4 9.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l64-64c12.5-12.5 12.5-32.8 0-45.3l-64-64c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l9.4 9.4H288V109.3l9.4 9.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-64-64z"/></svg>
+              <svg class="deleteIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M170.5 51.6L151.5 80h145l-19-28.4c-1.5-2.2-4-3.6-6.7-3.6H177.1c-2.7 0-5.2 1.3-6.7 3.6zm147-26.6L354.2 80H368h48 8c13.3 0 24 10.7 24 24s-10.7 24-24 24h-8V432c0 44.2-35.8 80-80 80H112c-44.2 0-80-35.8-80-80V128H24c-13.3 0-24-10.7-24-24S10.7 80 24 80h8H80 93.8l36.7-55.1C140.9 9.4 158.4 0 177.1 0h93.7c18.7 0 36.2 9.4 46.6 24.9zM80 128V432c0 17.7 14.3 32 32 32H336c17.7 0 32-14.3 32-32V128H80zm80 64V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16z"/></svg>
+                </div>
+            </div>
             <p>éditer</p>
         </div>`;
+    });
+    // suppression d'une image
+    const deleteIcon = document.querySelectorAll(".deleteIcon");
+    data.forEach((element, i) => {
+      const pictureId = element.id;
+      const deleteButton = deleteIcon[i];
 
+      deleteButton.addEventListener("click", async (e) => {
+        e.preventDefault();
+        try {
+          fetch(`http://localhost:5678/api/works/${pictureId}`, {
+            method: "DELETE",
+            headers: {
+              Authorization: `Bearer ${cookies[1]}`,
+              Accept: "application/json",
+            },
+          }).then((responseDelete) => {
+            if (!responseDelete.ok) {
+              throw new Error("Network response was not ok");
+            } else {
+              console.log("Image deleted successfully.");
+            }
+          });
+        } catch (error) {
+          console.error(error);
+        }
+      });
     });
     const buttonFilter = document.querySelectorAll(".filterButton");
     const projectItem = document.getElementsByClassName("projectItem");
@@ -77,12 +109,16 @@ async function getElementAPI() {
   const login = document.getElementById("login");
   const changeBar = document.getElementById("change_bar");
   const filterGroup = document.getElementById("filterGroup");
-
+  const editButton = document.querySelectorAll('.editButton');
+  
   if (cookies[0] === "Login") {
     // alors change login en logout
     changeBar.style.display = "flex";
     login.innerText = "logout";
     filterGroup.style.visibility = "hidden";
+    for (let i = 0; i < editButton.length; i++) {
+      editButton[i].style.visibility = "visible";
+    }
     login.href = "#";
     login.addEventListener("click", (event) => {
       document.cookie =
@@ -92,8 +128,7 @@ async function getElementAPI() {
       location.reload();
     });
   }
-  
-  const editGallery = document.getElementById("editGallery");
+
   const modal = document.getElementById("modal");
 
   // Permet d'ouvrir la fênetre modale
@@ -142,6 +177,107 @@ async function getElementAPI() {
     previousPage.style.visibility = "hidden";
     galleryPicture.style.display = "flex";
     newPicture.style.display = "none";
+  });
+
+  const dropZone = document.getElementById("addNewPic");
+  const basicAppareance = document.getElementById("basicAppareance");
+  const pictureDisplayed = document.getElementById("pictureDisplayed");
+
+  // Écouteur d'événement pour empêcher le comportement par défaut lors du dragover
+  dropZone.addEventListener("dragover", (e) => {
+    e.preventDefault();
+  });
+  // C'est l'effet de rentrer dans la zone
+  dropZone.addEventListener("dragenter", (e) => {
+    e.preventDefault();
+    basicAppareance.style.display = "none";
+  });
+
+  dropZone.addEventListener("dragleave", (e) => {
+    e.preventDefault();
+    basicAppareance.style.display = "flex";
+  });
+
+  const imageDrop = document.getElementById("pictureDisplayed").children[0];
+  let resultData = {};
+  let imgExist = false;
+  // Écouteur d'événement pour récupérer l'image lors du drop
+  dropZone.addEventListener("drop", function (e) {
+    e.preventDefault();
+
+    // Récupérer l'image déposée
+    const image = e.dataTransfer.files[0];
+    const fileExt = image?.name.split(".").pop();
+
+    if (
+      image &&
+      ["jpg", "jpeg", "png", "gif", "bmp"].indexOf(fileExt.toLowerCase()) !== -1
+    ) {
+      const fileReader = new FileReader();
+
+      fileReader.onload = function (event) {
+        // Mettre à jour l'attribut src de l'image avec l'URL de l'image déposée
+        imageDrop.src = event.target.result;
+      };
+
+      fileReader.readAsDataURL(image);
+      resultData = image;
+      imgExist = true;
+    }
+    if (imgExist) {
+      basicAppareance.style.display = "none";
+    } else {
+      basicAppareance.style.display = "flex";
+    }
+  });
+
+  const fileUpload = document.getElementById("file-upload");
+
+  fileUpload.addEventListener("change", (e) => {
+    const image = e.target.files[0];
+
+    if (image.type.match("image.*")) {
+      const fileReader = new FileReader();
+
+      fileReader.onload = function (event) {
+        // Mettre à jour l'attribut src de l'image avec l'URL de l'image déposée
+        imageDrop.src = event.target.result;
+      };
+
+      fileReader.readAsDataURL(image);
+      resultData = image;
+      imgExist = true;
+    }
+    if (imgExist) {
+      basicAppareance.style.display = "none";
+    } else {
+      basicAppareance.style.display = "flex";
+    }
+  });
+  const validateImgButton = document.getElementById("validateImgButton");
+
+  validateImgButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    let titlePicture = document.formAddPicture.text.value;
+    let categoryPicture = document.formAddPicture.menu.value;
+    if (resultData && titlePicture && categoryPicture) {
+      const formData = new FormData();
+      formData.append("image", resultData);
+      formData.append("title", titlePicture);
+      formData.append("category", categoryPicture);
+
+      fetch("http://localhost:5678/api/works", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${cookies[1]}`,
+          Accept: "application/json",
+        },
+        body: formData,
+      }).then((response) => response.json());
+    } else {
+      document.getElementById("errorMessageModal").innerHTML =
+        "Veuillez ajouter une image et remplir les champs au dessus";
+    }
   });
 }
 getElementAPI();
