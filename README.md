@@ -14,9 +14,9 @@ Ayant terminé votre dernier projet avec un peu d'avance, vous êtes envoyé en 
  
 - Récupérer dynamiquement les donnnées des travaux de l'API  : ✅
 - Ajouter le tri des projets par catégorie dans la galerie : ✅
-- Intégrer la page de connexion pour le site : En cours 
-- Ajouter la modale pour gérer les projets : ❌
-- Créer le formulaire pour l'ajout de projet : ❌
+- Intégrer la page de connexion pour le site : ✅
+- Ajouter la modale pour gérer les projets :✅
+- Créer le formulaire pour l'ajout de projet : ✅
 
 # Instruction et utilisation
 
